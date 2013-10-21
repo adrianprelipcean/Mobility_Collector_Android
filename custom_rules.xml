@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project
+    name="custom_rules"
+    default="debug" >
+
+    <target
+        name="config_devel"
+        depends="-set-devel-props, config" >
+    </target>
+
+    <target name="-set-devel-props" >
+
+        <property
+            name="variables.samplingmindistance"
+            value="50"
+        />
+
+        <property
+            name="variables.samplingmintime"
+            value="30000" />
+
+        <property
+            name="variables.isautoupload"
+            value="1" />
+
+	<property
+            name="variables.frequencyInHours"
+            value="1" />
+
+        <property
+            name="variables.powersaving"
+            value="true" />
+
+        <property
+            name="variables.equidistance"
+            value="true" />
+
+	<property
+            name="variables.areannotationsallowed"
+            value="true" />
+
+	<property
+            name="variables.isaccelerometerembedded"
+            value="true" />
+
+	<property
+            name="variables.annotationsstrings"
+            value="walking \n driving \n cycling" />
+
+	<property
+            name="variables.accelerometerfrequency"
+            value="30000" />
+
+	<property
+            name="variables.accelerometerSleepTime"
+            value="300000" />
+
+	<property
+            name="variables.isaccuracyfilterenabled"
+            value="true" />
+
+	<property
+            name="variables.accuracyfiltervalue"
+            value="50" />
+
+	<property
+            name="variables.periodAnnotations"
+            value="true" />
+
+	<property
+            name="variables.urlconnection"
+            value="http://192.168.1.137:8080/Mobility_Collector_Servlet" />
+
+	<property
+            name="variables.aboutsection"
+            value="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam magna tellus, pulvinar ut lacus vel, condimentum ullamcorper diam. Aenean ac erat luctus, consequat turpis nec, tempus quam. Aliquam volutpat mauris eget tortor cursus, eget laoreet turpis ullamcorper. Pellentesque non erat nec orci commodo adipiscing eget ac turpis. Suspendisse dignissim justo in dui tempus gravida. Sed id ante bibendum, laoreet diam nec, elementum neque. Donec accumsan nulla et massa suscipit, non vestibulum justo consequat. Quisque sollicitudin aliquam vehicula. Maecenas elit risus, venenatis in tincidunt et, bibendum mollis nisl. Curabitur laoreet arcu ut vehicula convallis. Proin quis elit non diam congue iaculis. Phasellus neque mi, elementum ut augue vitae, eleifend placerat turpis. Cras libero urna, varius id orci tempus, porttitor congue lacus. Nulla facilisi. Aliquam eu orci condimentum sem laoreet malesuada sed eu quam. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus." />
+
+    </target>
+
+    <!-- Copy Variables.java to our source tree, replacing custom tokens with values in build.properties. The configuration depends on "clean" because otherwise the build system will not detect changes in the configuration. -->
+
+    <target name="config" >
+
+        <property
+            name="config-target-path"
+            value="${source.dir}/config/Variables" />
+
+        <chmod
+            file="${config-target-path}/Variables.java"
+            perm="+w" />
+
+        <attrib
+            file="${config-target-path}/Variables.java"
+            readonly="false" />
+
+        <!-- Copy the configuration file, replacing tokens in the file. -->
+
+        <copy
+            encoding="utf-8"
+            file="config/Variables.java"
+            overwrite="true"
+            todir="${config-target-path}" >
+
+            <filterset>
+
+                <filter
+                    token="VARIABLES.samplingMinDistance"
+                    value="${variables.samplingmindistance}" />
+                
+                <filter
+                    token="VARIABLES.samplingMinTime"
+                    value="${variables.samplingmintime}" />
+
+                <filter
+                    token="VARIABLES.isAutoUpload"
+                    value="${variables.isautoupload}" />
+
+		<filter
+                    token="VARIABLES.frequencyInHours"
+                    value="${variables.frequencyInHours}" />
+
+                <filter
+                    token="VARIABLES.powerSaving"
+                    value="${variables.powersaving}" />
+
+                <filter
+                    token="VARIABLES.equidistance"
+                    value="${variables.equidistance}" />
+
+                <filter
+                    token="VARIABLES.areAnnotationsAllowed"
+                    value="${variables.areannotationsallowed}" />
+
+                <filter
+                    token="VARIABLES.isAccelerometerEmbedded"
+                    value="${variables.isaccelerometerembedded}" />
+
+                <filter
+                    token="VARIABLES.annotationsStrings"
+                    value="${variables.annotationsstrings}" />
+
+                <filter
+                    token="VARIABLES.areAnnotationsAllowed"
+                    value="${variables.areannotationsallowed}" />
+
+                <filter
+                    token="VARIABLES.accelerometerFrequency"
+                    value="${variables.accelerometerfrequency}" />
+
+                <filter
+                    token="VARIABLES.accelerometerSleepTime"
+                    value="${variables.accelerometerSleepTime}" />
+
+                <filter
+                    token="VARIABLES.isAccuracyFilterEnabled"
+                    value="${variables.isaccuracyfilterenabled}" />
+
+                <filter
+                    token="VARIABLES.accuracyFilterValue"
+                    value="${variables.accuracyfiltervalue}" />
+
+                <filter
+                    token="VARIABLES.periodAnnotations"
+                    value="${variables.periodAnnotations}" />
+
+                <filter
+                    token="VARIABLES.urlConnection"
+                    value="${variables.urlconnection}" />
+
+                <filter
+                    token="VARIABLES.aboutSectionString"
+                    value="${variables.aboutsection}" />
+
+
+            </filterset>
+        </copy>
+
+        <!--
+             Now set it to read-only, as we don't want people accidentally
+             editing the wrong one. NOTE: This step is unnecessary, but I do
+             it so the developers remember that this is not the original file.
+        -->
+
+        <chmod
+            file="${config-target-path}/Variables.java"
+            perm="-w" />
+
+        <attrib
+            file="${config-target-path}/Variables.java"
+            readonly="true" />
+    </target>
+
+</project>

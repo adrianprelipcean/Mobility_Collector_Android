@@ -1,0 +1,27 @@
+# view AndroidManifest.xml #generated:92
+-keep class components.PowerSaving.PowerSavingAlarm { <init>(...); }
+
+# view AndroidManifest.xml #generated:72
+-keep class components.Service.CollectingService { <init>(...); }
+
+# view AndroidManifest.xml #generated:47
+-keep class design.Classes.AboutPage { <init>(...); }
+
+# view AndroidManifest.xml #generated:55
+-keep class design.Classes.AdminLogin { <init>(...); }
+
+# view AndroidManifest.xml #generated:63
+-keep class design.Classes.AdminPage { <init>(...); }
+
+# view AndroidManifest.xml #generated:21
+-keep class design.Classes.LoginPage { <init>(...); }
+
+# view AndroidManifest.xml #generated:31
+-keep class design.Classes.RegisterPage { <init>(...); }
+
+# view AndroidManifest.xml #generated:39
+-keep class design.Classes.ServiceHandling { <init>(...); }
+
+# view AndroidManifest.xml #generated:83
+-keep class utilities.OnBootReceiver { <init>(...); }
+
